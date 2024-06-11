@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 
 router.get('/signin', async (req, res) => {
   try {
-    res.render('homepage');
+    res.render('login');
   } catch (err) {
     res.status(500).json(err);
   }
