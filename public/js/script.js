@@ -24,3 +24,7 @@ function fetchParksByState(stateCode) {
       console.error('Error fetching data:', error);
     });
 }
+
+//TODO: add event listener from a button in the HTML
+//what can be used potentially from data
+//parkcode, fullname, description, contact info, address, images,
