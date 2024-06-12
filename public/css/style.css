@@ -1,0 +1,13 @@
+body {
+    background-image: url(../images/yellowstone-national-park-bison-herd-madison-river-valley.jpg);
+    background-size: cover;
+}
+
+.background-image {
+    background-image: url(../images/yellowstone-national-park-bison-herd-madison-river-valley.jpg);
+    background-size: cover;
+}
+
+footer {
+    text-align: center;
+}
