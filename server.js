@@ -5,6 +5,7 @@ const routes = require('./routes');
 const helpers = require('./utils/helpers');
 const sequelize = require('./config/connections');
 
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -18,7 +19,13 @@ const sess = {
     cookie: {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
+        secure: false,
+        sameSite: 'strict'
     },
+    store: new SequelizeStore({
+        db: sequelize
+    }),
+
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
