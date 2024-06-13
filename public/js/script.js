@@ -59,4 +59,6 @@ function fetchParks(stateCode = 'mn') {
 //Fetch parks in Minnesota (state code: "mn")
 fetchParks('mn');
 
+//TODO: Add event listener to the form to fetch parks
+
 
