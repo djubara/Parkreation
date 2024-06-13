@@ -13,8 +13,8 @@
 
 const router = require('express').Router();
 const apiRoutes = require('./api');
-const StateController = require('../controllers/stateController');
-// const withAuth = require('../utils/auth');
+// const StateController = require('./stateController');
+// const withAuth = require('../utils/helpers');
 // const { User, Post, Comment } = require('../models');
 router.use('/api', apiRoutes);
 
@@ -41,6 +41,14 @@ router.get('/states/:stateName', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
 
+  }
+});
+
+router.get('/register', async (req, res) => {
+  try {
+    res.render('register');
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
