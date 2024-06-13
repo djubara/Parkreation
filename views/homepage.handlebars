@@ -1,14 +1,58 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parkreation</title>
-</head>
-<body>
-    <div class="text-center text-white">
-        <h1>Parkreation</h1>
-        <p>Welcome to Parkreation!</p>
+  </head>
+  <body>
+    <div>
+      <h1 class="my-4 text-center text-white text-6xl">Parkreation</h1>
+      {{!-- {{#ifLoggedIn user}}
+            <p>Welcome, {{user.name}}!</p>
+        {{else}}
+            <p>Welcome to Parkreation!</p>
+        {{/ifLoggedIn}} --}}
     </div>
-</body>
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="relative w-full max-w-2xl">
+        <!-- Carousel Wrapper -->
+        <div id="carousel" class="overflow-hidden relative">
+          <!-- Slides -->
+          <div
+            class="carousel-inner flex transition-transform duration-500 ease-in-out"
+          >
+            <div class="carousel-item flex-none w-full">
+              <img src="../images/arizona-state-parks.jpg" class="w-full" alt="Slide 1"/>
+            </div>
+            <div class="carousel-item flex-none w-full">
+              <img
+                src="../images/badLands.jpg"
+                class="w-full"
+                alt="Slide 2"
+              />
+            </div>
+            <div class="carousel-item flex-none w-full">
+              <img
+                src="../images/Hiker-Sequoia-National-Park-Sierra-Nevada-California.jpg"
+                class="w-full"
+                alt="Slide 3"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button
+          id="prev"
+          class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2"
+        >Prev</button>
+        <button
+          id="next"
+          class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2"
+        >Next</button>
+      </div>
+    </div>
+
+    <script src="carousel.js"></script>
+  </body>
 </html>
