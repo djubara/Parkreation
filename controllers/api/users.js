@@ -4,6 +4,7 @@ router.post('/', async (req, res) => {
     try {
         const user = await UserController.createUser(req.body);
         // TODO create session variables based on the logged in user
+
         res.status(201).json(user);
     } catch (err) {
         res.status(500).json(err);
