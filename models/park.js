@@ -5,24 +5,23 @@ class Park extends Model {}
 
 Park.init(
     {
-        id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-        },
-        park_website: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        },
-        park_description: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        },
-        park_image: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        },
+        fullName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          description: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+          },
+          parkCode: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+          },
+          imageUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
+          },
     },
     {
         sequelize,
