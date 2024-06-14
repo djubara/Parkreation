@@ -1,4 +1,6 @@
+const User = require('../../models/users');
 const { createUser } = require('../userController');
+const bcrypt = require('bcrypt')
 
 const router = require('express').Router();
 
@@ -14,6 +16,29 @@ router.post('/register', async (req, res) => {
         req.session.signed_in = true
         res.status(200).redirect('/')
     })
+})
+
+router.post('/signin', async (req, res) => {
+    const user = await User.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+    const userData = user.dataValues
+
+    if (await bcrypt.compare(req.body.password, userData.password)) {
+        req.session.save(() => {
+            req.session.user_id = userData.id
+            req.session.signed_in = true
+            res.redirect('/')
+        })
+        return
+    } else {
+        res.status(500).send('Password does not match!')
+        return
+    }
+
+    res.status(500).send('An unknown error occured. Please try again!')
 })
 
 // const UserController = require('../userController');
@@ -50,7 +75,6 @@ router.post('/register', async (req, res) => {
 //     }
 
 // });
-
 module.exports = router;
 
 

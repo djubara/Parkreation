@@ -38,13 +38,15 @@
 <div class="p-4 h-100 d-flex flex-column justify-content-center align-items-center rounded">
     <div class="bg-success text-light p-4 w-50">
         <h2>Sign In</h2>
-        <form action="">
+        <form method="post" action="/api/users/signin">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+                <input name="email" type="email" class="form-control" id="exampleFormControlInput1"
+                    placeholder="name@example.com" />
             </div>
             <label for="inputPassword5" class="form-label">Password</label>
-            <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" />
+            <input name="password" type="password" id="inputPassword5" class="form-control"
+                aria-describedby="passwordHelpBlock" />
 
             <button class="btn btn-primary mt-2" type="submit">Sign in</button>
         </form>
