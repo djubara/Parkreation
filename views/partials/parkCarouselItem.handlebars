@@ -1,0 +1,29 @@
+<div id="container" class="d-flex flex-column justify-content-center w-100 bg-success">
+    <img src="{{getFirstImageURL images}}" alt="" class="h-100 w-100" />
+
+    <footer class="bg-body d-flex flex-column align-items-start p-4">
+        <h2>{{fullName}}</h2>
+        <p class="park-description">{{description}}</p>
+
+        <div class="w-100 d-flex justify-content-center gap-4 px-4">
+            <button class="btn btn-primary" title="Add to visited">
+                Add to visited
+            </button>
+
+            <button class="btn btn-primary" title="Add to wishlist">
+                Add to wishlist
+            </button>
+        </div>
+    </footer>
+
+</div>
+
+<style>
+    img {
+        object-fit: cover;
+    }
+
+    .icon {
+        height: 25px;
+    }
+</style>
