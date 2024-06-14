@@ -6,11 +6,11 @@
         <p class="park-description">{{shortenDescription description}}</p>
 
         <div class="w-100 d-flex justify-content-center gap-4 px-4">
-            <button class="btn btn-primary" title="Add to visited">
+            <button id="add-to-visited" class="btn btn-primary" title="Add to visited" data-park-code="{{parkCode}}">
                 Add to visited
             </button>
 
-            <button class="btn btn-primary" title="Add to wishlist">
+            <button class="btn btn-primary" title="Add to wishlist" id="add-to-wishlist" data-park-code="{{parkCode}}">
                 Add to wishlist
             </button>
         </div>

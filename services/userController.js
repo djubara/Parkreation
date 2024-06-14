@@ -1,8 +1,19 @@
+const { Comment, Visit, Wish, Park } = require("../models");
 const User = require("../models/users");
 
 module.exports = {
     async getUserByID(userID) {
-        // TODO sequelize query to get user by ID
+        return await User.findByPk(userID, {
+            include: [{
+                model: Comment
+            }, {
+                model: Park,
+                as: "visited"
+            }, {
+                model: Park,
+                as: "wishlist"
+            }]
+        });
     },
     async getUserByEmail(userEmail) {
         // TODO sequelize query to get user by email

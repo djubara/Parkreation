@@ -1,16 +1,49 @@
-const { createUser } = require('../userController');
+const User = require('../../models/users');
+const { createUser } = require('../../services/userController');
+const bcrypt = require('bcrypt')
 
 const router = require('express').Router();
 
 router.post('/register', async (req, res) => {
-    await createUser({
+    const createdUser = await createUser({
         id: null,
         email: req.body.email,
         password: req.body.password
     })
 
-    res.status(200).send('something')
+    req.session.save(() => {
+        req.session.user_id = createdUser.dataValues.id
+        req.session.signedIn = true
+        res.status(200).redirect('/')
+    })
 })
+
+router.post('/signin', async (req, res) => {
+    const user = await User.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+    if (!user) {
+        res.status(404).send('No user with that email address!')
+        return
+    }
+    if (await bcrypt.compare(req.body.password, user.password)) {
+        req.session.save(() => {
+            req.session.user_id = user.id
+            req.session.signedIn = true
+            res.redirect('/')
+        })
+        return
+    } else {
+        res.status(500).send('Password does not match!')
+        return
+    }
+
+    res.status(500).send('An unknown error occured. Please try again!')
+});
+
+module.exports = router;
 
 // const UserController = require('../userController');
 // router.post('/', async (req, res) => {
@@ -45,9 +78,7 @@ router.post('/register', async (req, res) => {
 //         res.status(500).json(err);
 //     }
 
-// });
-
-module.exports = router;
+// })
 
 
 // // CREATE new user
