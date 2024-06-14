@@ -1,4 +1,4 @@
-const { create } = require("handlebars");
+const User = require("../models/users");
 
 module.exports = {
     async getUserByID(userID) {
@@ -7,9 +7,6 @@ module.exports = {
     async getUserByEmail(userEmail) {
         // TODO sequelize query to get user by email
     },
-    async createUser(userData) {
-        // TODO sequelize query to create a new user
-    },  // TODO Modeler to create a new user columns
     createUser: async (userData) => {
         try {
             const newUser = await User.create(userData);

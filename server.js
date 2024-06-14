@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars');
 const routes = require('./controllers/index');
 const helpers = require('./utils/helpers');
@@ -42,6 +43,9 @@ const sess = {
 }
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(session(sess));
 app.use(express.json());
