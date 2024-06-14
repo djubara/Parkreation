@@ -1,21 +1,21 @@
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
-const routes = require('./controllers');
+const routes = require('./controllers/index');
 const helpers = require('./utils/helpers');
 const sequelize = require('./config/connections');
-const getFirstImageURL = require('./utils/helpers/getFirstImageURL');
+const getFirstImageURL = require('./utils/helpers/getFirstImageURL')
+const shortenDescription = require('./utils/helpers/shortenDescription');
 
-
-require('dotenv').config();
-
+require('dotenv').config()
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const models = require('./models');
 const hbs = exphbs.create({
     helpers: {
-        getFirstImageURL: getFirstImageURL
+        getFirstImageURL,
+        shortenDescription
     }
 });
 
@@ -52,4 +52,3 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`App listening on port: http://localhost:${PORT}`));
 });
-
