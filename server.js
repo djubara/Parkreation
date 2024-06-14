@@ -6,6 +6,9 @@ const helpers = require('./utils/helpers');
 const sequelize = require('./config/connections');
 
 
+require('dotenv').config();
+
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 const models = require('./models');

@@ -1,3 +1,7 @@
+const express = require('express');
+const exphbs = require('express-handlebars');
+const app = express();
+
 // apiKey
 const apiKey = "yWEFk0saMAGqZhd2g8j6iNhf9vXQ7fQfzOvAiZMo";
 
