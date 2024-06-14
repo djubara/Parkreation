@@ -3,13 +3,17 @@ const { createUser } = require('../userController');
 const router = require('express').Router();
 
 router.post('/register', async (req, res) => {
-    await createUser({
+    const createdUser = await createUser({
         id: null,
         email: req.body.email,
         password: req.body.password
     })
 
-    res.status(200).send('something')
+    req.session.save(() => {
+        req.session.user_id = createdUser.dataValues.id
+        req.session.signed_in = true
+        res.status(200).redirect('/')
+    })
 })
 
 // const UserController = require('../userController');
