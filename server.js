@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const sequelize = require('./config/connections');
+const getFirstImageURL = require('./utils/helpers/getFirstImageURL');
 
 
 require('dotenv').config();
@@ -12,7 +13,11 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const models = require('./models');
-const hbs = exphbs.create({});
+const hbs = exphbs.create({
+    helpers: {
+        getFirstImageURL: getFirstImageURL
+    }
+});
 
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);

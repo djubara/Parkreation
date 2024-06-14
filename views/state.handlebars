@@ -1,0 +1,39 @@
+<div id="carouselExample" class="carousel slide m-4 h-100">
+    <div class="carousel-inner">
+        {{!-- <div class="carousel-item active">
+            {{> parkCarouselItem}}
+        </div> --}}
+        {{#each parks.data}}
+        {{#if @index}}
+        <div class="carousel-item">
+            {{> parkCarouselItem }}
+        </div>
+        {{else}}
+        <div class="carousel-item active">
+            {{> parkCarouselItem}}
+        </div>
+        {{/if}}
+        {{/each}}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="carousel-button-background"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="carousel-button-background"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<style>
+    .carousel-button-background {
+        position: absolute;
+        background-color: black;
+        width: 75px;
+        height: 75px;
+        z-index: -1;
+        border-radius: 100%;
+    }
+</style>

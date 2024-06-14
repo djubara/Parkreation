@@ -12,10 +12,9 @@
 
 
 const router = require('express').Router();
+const { getParksByStateCode } = require('../services/nps');
 const apiRoutes = require('./api');
-// const StateController = require('./stateController');
-// const withAuth = require('../utils/helpers');
-// const { User, Post, Comment } = require('../models');
+
 router.use('/api', apiRoutes);
 
 router.get('/', async (req, res) => {
@@ -34,15 +33,11 @@ router.get('/signin', async (req, res) => {
   }
 });
 
-router.get('/states/:stateName', async (req, res) => {
-  try {
-    const stateData = await StateController.getStateByName(req.params.stateName)
-    res.render('state', { ...stateData });
-  } catch (err) {
-    res.status(500).json(err);
+router.get('/state/:stateCode', async (req, res) => {
+  const parks = await getParksByStateCode(req.params.stateCode)
 
-  }
-});
+  res.render('state', { parks })
+})
 
 router.get('/register', async (req, res) => {
   try {
