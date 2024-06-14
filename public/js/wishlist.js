@@ -1,6 +1,6 @@
 document.querySelectorAll("#add-to-wishlist").forEach((el) => {
     el.addEventListener('click', () => {
-        addToWishlist(el.dataset.parkid)
+        addToWishlist(el.dataset.parkCode)
     })
 })
 
@@ -12,7 +12,12 @@ async function addToWishlist(parkId) {
             "Content-Type": 'application/json'
         },
         body: JSON.stringify({
-            "park_id": parkId
+            "park_code": parkId
         })
     })
+    if (res.ok) {
+        location.reload()
+    } else {
+        console.log('error adding to wishlist')
+    }
 }

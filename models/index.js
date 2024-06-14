@@ -2,6 +2,7 @@ const User = require('./users');
 const Comment = require('./comment');
 const Visit = require('./visit');
 const Wish = require('./wish');
+const Park = require('./park');
 
 // comment relationships
 User.hasMany(Comment, {
@@ -14,23 +15,32 @@ Comment.belongsTo(User, {
 })
 
 // wishlist relationships
-User.hasMany(Wish, {
+User.belongsToMany(Park, {
     foreignKey: 'user_id',
+    through: Wish,
+    as: "wishlist",
     onDelete: 'CASCADE'
 })
 
-Wish.belongsTo(User, {
-    foreignKey: 'user_id'
+Park.belongsToMany(User, {
+    foreignKey: 'park_id',
+    through: Wish,
+    as: "wishlist",
+
 })
 
 // visit relationships
-User.hasMany(Visit, {
+User.belongsToMany(Park, {
     foreignKey: 'user_id',
+    through: Visit,
+    as: "visited",
     onDelete: 'CASCADE'
 })
 
-Visit.belongsTo(User, {
-    foreignKey: 'user_id',
+Park.belongsToMany(User, {
+    foreignKey: 'park_id',
+    through: Visit,
+    as: "visited"
 })
 
-module.exports = { User, Comment, Visit, Wish };
+module.exports = { User, Comment, Visit, Wish, Park };

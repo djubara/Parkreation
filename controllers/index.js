@@ -13,13 +13,14 @@
 
 const router = require('express').Router();
 const { getParksByStateCode } = require('../services/nps');
+const { getUserByID } = require('../services/userController');
 const apiRoutes = require('./api');
 
 router.use('/api', apiRoutes);
 
 router.get('/', async (req, res) => {
   try {
-    res.render('homepage');
+    res.render('homepage', { signedIn: req.session.signedIn });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -27,22 +28,48 @@ router.get('/', async (req, res) => {
 
 router.get('/signin', async (req, res) => {
   try {
-    res.render('login');
+    if (req.session.signedIn) {
+      res.redirect('/')
+      return
+    }
+    else {
+      res.render('login');
+    }
+
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 router.get('/state/:stateCode', async (req, res) => {
-  const parks = await getParksByStateCode(req.params.stateCode)
-
-  res.render('state', { parks })
+  try {
+    if (!req.session.signedIn) {
+      res.redirect('/signin')
+      return
+    }
+    const [user, parks] = await Promise.all([
+      getUserByID(req.session.user_id),
+      getParksByStateCode(req.params.stateCode)
+    ])
+    const { visited, wishlist } = user.get({ plain: true });
+    console.log(user.get({ plain: true }));
+    res.render('state', { parks, visited, wishlist, signedIn: req.session.signedIn })
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 })
 
 router.get('/register', async (req, res) => {
   try {
-    res.render('register');
-  } catch (err) {
+    if (req.session.signedIn) {
+      res.redirect('/')
+    }
+    else {
+      res.render('register');
+    }
+  }
+  catch (err) {
     res.status(500).json(err);
   }
 });

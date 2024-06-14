@@ -1,5 +1,5 @@
 const User = require('../../models/users');
-const { createUser } = require('../userController');
+const { createUser } = require('../../services/userController');
 const bcrypt = require('bcrypt')
 
 const router = require('express').Router();
@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
 
     req.session.save(() => {
         req.session.user_id = createdUser.dataValues.id
-        req.session.signed_in = true
+        req.session.signedIn = true
         res.status(200).redirect('/')
     })
 })
@@ -24,12 +24,14 @@ router.post('/signin', async (req, res) => {
             email: req.body.email
         }
     })
-    const userData = user.dataValues
-
-    if (await bcrypt.compare(req.body.password, userData.password)) {
+    if (!user) {
+        res.status(404).send('No user with that email address!')
+        return
+    }
+    if (await bcrypt.compare(req.body.password, user.password)) {
         req.session.save(() => {
-            req.session.user_id = userData.id
-            req.session.signed_in = true
+            req.session.user_id = user.id
+            req.session.signedIn = true
             res.redirect('/')
         })
         return
@@ -39,7 +41,9 @@ router.post('/signin', async (req, res) => {
     }
 
     res.status(500).send('An unknown error occured. Please try again!')
-})
+});
+
+module.exports = router;
 
 // const UserController = require('../userController');
 // router.post('/', async (req, res) => {
@@ -74,8 +78,7 @@ router.post('/signin', async (req, res) => {
 //         res.status(500).json(err);
 //     }
 
-// });
-module.exports = router;
+// })
 
 
 // // CREATE new user

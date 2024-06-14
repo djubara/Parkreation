@@ -41,14 +41,21 @@
           <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
+          {{#unless signedIn }}
           <a class="nav-link text-light" href="/signin">Sign in</a>
+          {{else}}
+          <button class="nav-link text-light" id="logout">Logout</button>
+          {{/unless}}
         </li>
+
       </ul>
+      {{#if signedIn}}
       <form id="search" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Enter a State (MN)" aria-label="Search"
           maxlength="2" id="search-input" />
         <button class="btn btn-primary" type="submit">Search</button>
       </form>
+      {{/if}}
     </div>
   </div>
 </nav>
