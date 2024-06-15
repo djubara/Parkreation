@@ -1,8 +1,11 @@
+
+// import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connections');
 
 class Park extends Model { }
 
+// create fields/columns for Park model
 Park.init(
     {
         id: {
