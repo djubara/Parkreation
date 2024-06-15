@@ -1,3 +1,5 @@
+// Purpose: Main entry point for the application. This file is responsible for setting up the server and connecting to the database. It also sets up the express-handlebars view engine and the express-session middleware. It also sets up the routes for the application.
+
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser')
