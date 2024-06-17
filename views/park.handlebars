@@ -1,0 +1,88 @@
+<div id="container" class="container h-100">
+    <div class="row align-items-start justify-content-center">
+
+        {{!-- visited list --}}
+
+        {{!-- carousel --}}
+        <div class="col-6">
+
+            {{!-- <div class="carousel-item active">
+                {{> parkCarouselItem}}
+            </div> --}}
+
+            <div class="w-100 bg-success">
+                <img src="{{park.park_image}}" class="" />
+
+                <footer class="bg-body d-flex flex-column align-items-start p-4">
+                    <h2>{{park.park_name}}</h2>
+                    <p class="park-description">{{park.park_description}}</p>
+
+                    <div class="w-100 d-flex justify-content-center gap-4 px-4">
+                        <button id="add-to-visitlist" class="btn btn-primary" title="Add to visited"
+                            data-park-code="{{park.park_code}}">
+                            Add to visited
+                        </button>
+
+                        <button class="btn btn-primary" title="Add to wishlist" id="add-to-wishlist"
+                            data-park-code="{{park.park_code}}">
+                            Add to wishlist
+                        </button>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+        <div class="col-6 text-light">
+            <div class="m-2 p-2 bg-success">
+                <h3>Comments</h3>
+            </div>
+            <div class="m-2 p-2 bg-success">
+                <form id="comment-form">
+                    <div class="form-group"><textarea name="content" class="form-control"></textarea></div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" type="submit">Add Comment</button>
+                    </div>
+                </form>
+                <div>
+
+                    <ul>
+                        {{#each comments}}
+                        <li>{{this.content}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/wishlist.js"></script>
+<script src="/js/visitlist.js"></script>
+<script src="/js/comment.js"></script>
+
+
+<style>
+    #container {
+        margin-top: 50px
+    }
+
+    .carousel-button-background {
+        position: absolute;
+        background-color: black;
+        width: 75px;
+        height: 75px;
+        z-index: -1;
+        border-radius: 100%;
+    }
+
+    img {
+        height: 300px;
+        width: inherit;
+        object-fit: cover;
+    }
+
+    .icon {
+        height:
+            25px;
+    }
+</style>

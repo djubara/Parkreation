@@ -6,16 +6,20 @@
         <p class="park-description">{{shortenDescription description}}</p>
 
         <div class="w-100 d-flex justify-content-center gap-4 px-4">
-            <button id="add-to-visitlist" class="btn btn-primary" title="Add to visited" data-park-code="{{parkCode}}">
-                Add to visited
-            </button>
-            <button id="add-comment" class="btn btn-primary" title="Add Comment" data-park-code="{{parkCode}}">
-                Add Comment
-            </button>
-            <button class="btn btn-primary" title="Add to wishlist" id="add-to-wishlist" data-park-code="{{parkCode}}">
-                Add to wishlist
-            </button>
-        </div>
+            {{!-- <div class="d-flex justify-content-center gap-4 px-4"> --}}
+                <button id="add-to-visitlist" class="btn btn-primary" title="Add to visited"
+                    data-park-code="{{parkCode}}">
+                    Add to visited
+                </button>
+
+                <button class="btn btn-primary" title="Add to wishlist" id="add-to-wishlist"
+                    data-park-code="{{parkCode}}">
+                    Add to wishlist
+                </button>
+                <a class="btn btn-primary" title="Add Comment" href="/park/{{parkCode}}">
+                    Add Comment
+                </a>
+            </div>
     </footer>
 
 </div>

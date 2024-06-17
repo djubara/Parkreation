@@ -1,4 +1,4 @@
-const { Park } = require("../models");
+const { Park, Comment } = require("../models");
 const { getParksByParkCode } = require("./nps");
 
 module.exports = {
@@ -6,6 +6,9 @@ module.exports = {
         const park = await Park.findOne({
             where: {
                 park_code: parkCode
+            },
+            include: {
+                model: Comment,
             }
         });
         if (park) {
