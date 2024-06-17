@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
             return
         }
         const visit = await Visit.create({
-            user_id: req.session.user_id,
+            user_id: req.user.id,
             park_id: park.id
         })
         res.status(201).json(visit)

@@ -14,6 +14,15 @@ Comment.belongsTo(User, {
     foreignKey: 'user_id'
 })
 
+Park.hasMany(Comment, {
+    foreignKey: 'park_id',
+    onDelete: 'CASCADE'
+})
+
+Comment.belongsTo(Park, {
+    foreignKey: 'park_id'
+})
+
 // wishlist relationships
 User.belongsToMany(Park, {
     foreignKey: 'user_id',

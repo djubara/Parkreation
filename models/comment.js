@@ -20,7 +20,11 @@ Comment.init(
             },
         },
         park_id: {
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'park',
+                key: 'id',
+            },
         },
         content: {
             type: DataTypes.STRING,

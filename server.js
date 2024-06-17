@@ -1,20 +1,19 @@
 // Purpose: Main entry point for the application. This file is responsible for setting up the server and connecting to the database. It also sets up the express-handlebars view engine and the express-session middleware. It also sets up the routes for the application.
 
+require('dotenv').config()
+require("./utils/passport")
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars');
 const routes = require('./controllers/index');
-const helpers = require('./utils/helpers');
 const sequelize = require('./config/connections');
 const getFirstImageURL = require('./utils/helpers/getFirstImageURL')
 const shortenDescription = require('./utils/helpers/shortenDescription');
 
-require('dotenv').config()
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const models = require('./models');
 const hbs = exphbs.create({
     helpers: {
         getFirstImageURL,
@@ -23,6 +22,7 @@ const hbs = exphbs.create({
 });
 
 const session = require('express-session');
+const passport = require('passport');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
@@ -50,6 +50,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(session(sess));
+app.use(passport.authenticate("session"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
