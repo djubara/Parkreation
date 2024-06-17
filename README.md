@@ -28,7 +28,7 @@ Once you’ve entered the deployed application. You will be prompted to register
 ![image](./public/images/dashboard.png)
 
 #### Comments
-![image](./public/images/comment.png)
+![image](./public/images/updated-comment.png)
 
 > ## Credits
 [Dia Jubara](https://github.com/djubara)
